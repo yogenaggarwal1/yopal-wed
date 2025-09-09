@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarah & Michael - Our Wedding</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #e17055;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #e17055;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23ffeaa7" width="1200" height="600"/><circle cx="200" cy="150" r="3" fill="rgba(255,255,255,0.3)"/><circle cx="800" cy="100" r="2" fill="rgba(255,255,255,0.4)"/><circle cx="1000" cy="200" r="4" fill="rgba(255,255,255,0.2)"/></svg>') center/cover;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content .date {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-content .countdown {
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        section {
+            padding: 5rem 0;
+            margin-top: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2d3436;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .itinerary-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .time {
+            background: #e17055;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .event-details h3 {
+            color: #2d3436;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-details p {
+            color: #636e72;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #2d3436;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #e17055;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #e17055 0%, #d63031 100%);
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(225, 112, 85, 0.3);
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .photo-item {
+            aspect-ratio: 1;
+            background: linear-gradient(45deg, #ffeaa7, #fab1a0);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .registry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .registry-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .registry-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .registry-item h3 {
+            color: #e17055;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: rgba(45, 52, 54, 0.95);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .rsvp-status {
+            display: none;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .rsvp-status.success {
+            background: #00b894;
+            color: white;
+        }
+
+        .rsvp-status.error {
+            background: #e17055;
+            color: white;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">S & M</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#story">Our Story</a></li>
+                <li><a href="#itinerary">Itinerary</a></li>
+                <li><a href="#rsvp">RSVP</a></li>
+                <li><a href="#photos">Photos</a></li>
+                <li><a href="#registry">Registry</a></li>
+                <li><a href="#travel">Travel</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Sarah & Michael</h1>
+            <div class="date">June 15, 2024</div>
+            <div class="countdown" id="countdown">Loading countdown...</div>
+        </div>
+    </section>
+
+    <section id="story">
+        <div class="container">
+            <h2 class="section-title">Our Love Story</h2>
+            <div class="story-grid">
+                <div class="card fade-in">
+                    <h3>How We Met</h3>
+                    <p>It was a rainy Tuesday at the local coffee shop when our eyes first met. Sarah was reading her favorite novel, and Michael accidentally bumped into her table while ordering his usual latte. What started as an embarrassed apology turned into a three-hour conversation about books, dreams, and everything in between.</p>
+                </div>
+                <div class="card fade-in">
+                    <h3>The Proposal</h3>
+                    <p>Two years later, Michael surprised Sarah during their weekend hike at Sunset Point. As they reached the summit, he got down on one knee with the city lights twinkling below them. With tears of joy and a resounding "Yes!", our forever journey began.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="itinerary">
+        <div class="container">
+            <h2 class="section-title">Wedding Day Itinerary</h2>
+            <div class="card">
+                <div class="itinerary-item">
+                    <div class="time">2:00 PM</div>
+                    <div class="event-details">
+                        <h3>Guest Arrival & Welcome Drinks</h3>
+                        <p>Join us for champagne and light refreshments as we welcome our beloved guests</p>
+                    </div>
+                </div>
+                <div class="itinerary-item">
+                    <div class="time">3:00 PM</div>
+                    <div class="event-details">
+                        <h3>Wedding Ceremony</h3>
+                        <p>The main event! Please be seated by 2:45 PM for the processional</p>
+                    </div>
+                </div>
+                <div class="itinerary-item">
+                    <div class="time">4:00 PM</div>
+                    <div class="event-details">
+                        <h3>Cocktail Hour</h3>
+                        <p>Celebrate with us while we take photos. Appetizers and signature cocktails will be served</p>
+                    </div>
+                </div>
+                <div class="itinerary-item">
+                    <div class="time">6:00 PM</div>
+                    <div class="event-details">
+                        <h3>Reception & Dinner</h3>
+                        <p>Three-course dinner followed by toasts, cake cutting, and dancing</p>
+                    </div>
+                </div>
+                <div class="itinerary-item">
+                    <div class="time">11:00 PM</div>
+                    <div class="event-details">
+                        <h3>Grand Finale</h3>
+                        <p>Sparkler send-off as we begin our new chapter together</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rsvp">
+        <div class="container">
+            <h2 class="section-title">RSVP</h2>
+            <div class="card">
+                <p style="text-align: center; margin-bottom: 2rem; color: #636e72;">Please respond by May 1st, 2024</p>
+                <form id="rsvpForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="attendance">Will you be attending? *</label>
+                        <select id="attendance" name="attendance" required>
+                            <option value="">Please select</option>
+                            <option value="yes">Yes, I'll be there!</option>
+                            <option value="no">Sorry, can't make it</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Number of guests (including yourself) *</label>
+                        <select id="guests" name="guests" required>
+                            <option value="">Please select</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dietary">Dietary Restrictions or Allergies</label>
+                        <textarea id="dietary" name="dietary" rows="3" placeholder="Please let us know about any dietary needs..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="song">Song Request</label>
+                        <input type="text" id="song" name="song" placeholder="What song will get you on the dance floor?">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Special Message</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Share your well wishes or any special notes..."></textarea>
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="submit" class="submit-btn">Send RSVP</button>
+                    </div>
+                    <div id="rsvpStatus" class="rsvp-status"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="photos">
+        <div class="container">
+            <h2 class="section-title">Photo Gallery</h2>
+            <div class="photo-gallery">
+                <div class="photo-item">Engagement Photos</div>
+                <div class="photo-item">Adventures Together</div>
+                <div class="photo-item">Family & Friends</div>
+                <div class="photo-item">Special Moments</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="registry">
+        <div class="container">
+            <h2 class="section-title">Wedding Registry</h2>
+            <div class="card">
+                <p style="text-align: center; margin-bottom: 2rem;">Your presence is the greatest gift, but if you'd like to celebrate with us, here are some ideas:</p>
+                <div class="registry-grid">
+                    <div class="registry-item">
+                        <h3>Amazon</h3>
+                        <p>Home essentials and gadgets for our new life together</p>
+                    </div>
+                    <div class="registry-item">
+                        <h3>Target</h3>
+                        <p>Kitchen appliances and cozy home decor</p>
+                    </div>
+                    <div class="registry-item">
+                        <h3>Honeymoon Fund</h3>
+                        <p>Help us create magical memories in Italy</p>
+                    </div>
+                    <div class="registry-item">
+                        <h3>Williams Sonoma</h3>
+                        <p>Fine dining and cooking essentials</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="travel">
+        <div class="container">
+            <h2 class="section-title">Travel & Accommodations</h2>
+            <div class="story-grid">
+                <div class="card">
+                    <h3>Venue Location</h3>
+                    <p><strong>Sunset Gardens</strong><br>
+                    123 Wedding Lane<br>
+                    Beautiful City, ST 12345</p>
+                    <p style="margin-top: 1rem;">The venue offers complimentary parking and is wheelchair accessible.</p>
+                </div>
+                <div class="card">
+                    <h3>Recommended Hotels</h3>
+                    <p><strong>Grand Hotel</strong> - 5 miles from venue<br>
+                    Special rate: $120/night<br>
+                    Code: SARAHMICHAEL</p>
+                    <p><strong>Cozy Inn</strong> - 3 miles from venue<br>
+                    Special rate: $85/night<br>
+                    Code: SM2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>We can't wait to celebrate with you!</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">For questions, contact us at: wedding@sarahandmichael.com</p>
+        </div>
+    </footer>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const weddingDate = new Date('2024-06-15T15:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+                document.getElementById('countdown').innerHTML = `${days} days, ${hours} hours, ${minutes} minutes until "I do"`;
+            } else {
+                document.getElementById('countdown').innerHTML = "We're married! 💍";
+            }
+        }
+
+        // Update countdown every minute
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+
+        // RSVP Form Handling
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const rsvpData = {};
+            
+            for (let [key, value] of formData.entries()) {
+                rsvpData[key] = value;
+            }
+
+            // Simulate form submission
+            const statusDiv = document.getElementById('rsvpStatus');
+            statusDiv.style.display = 'block';
+            statusDiv.className = 'rsvp-status success';
+            statusDiv.textContent = 'Thank you! Your RSVP has been received. We can\'t wait to celebrate with you!';
+            
+            // Reset form
+            e.target.reset();
+            
+            // Log the data (in a real implementation, you'd send this to a server)
+            console.log('RSVP Data:', rsvpData);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.1s';
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
