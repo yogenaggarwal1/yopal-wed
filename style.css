@@ -1,0 +1,193 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Indian Wedding Color Palette */
+    --primary-red: #dc143c;
+    --primary-gold: #ffd700;
+    --deep-maroon: #8b0000;
+    --burnt-orange: #ff4500;
+    --saffron: #ff8c00;
+    --royal-purple: #4b0082;
+    --emerald: #50c878;
+    --cream: #f5f5dc;
+    --rich-brown: #8b4513;
+    
+    /* Gradient Colors */
+    --gradient-primary: linear-gradient(135deg, var(--primary-red) 0%, var(--deep-maroon) 100%);
+    --gradient-gold: linear-gradient(135deg, var(--primary-gold) 0%, var(--saffron) 100%);
+    --gradient-royal: linear-gradient(135deg, var(--royal-purple) 0%, var(--primary-red) 100%);
+    --gradient-warm: linear-gradient(135deg, var(--burnt-orange) 0%, var(--saffron) 100%);
+    
+    /* Typography */
+    --font-primary: 'Playfair Display', serif;
+    --font-secondary: 'Crimson Text', serif;
+    
+    /* Spacing */
+    --section-padding: 5rem 0;
+    --container-padding: 0 2rem;
+}
+
+body {
+    font-family: var(--font-secondary);
+    line-height: 1.6;
+    color: var(--rich-brown);
+    overflow-x: hidden;
+    background: linear-gradient(135deg, var(--cream) 0%, #faf0e6 50%, var(--cream) 100%);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--cream);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-primary);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--deep-maroon);
+}
+
+/* Floating Mandala Background */
+.mandala-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.03;
+}
+
+.mandala {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background-image: 
+        radial-gradient(circle at 50% 50%, var(--primary-gold) 2px, transparent 2px),
+        radial-gradient(circle at 25% 25%, var(--primary-red) 1px, transparent 1px),
+        radial-gradient(circle at 75% 75%, var(--burnt-orange) 1.5px, transparent 1.5px);
+    background-size: 50px 50px, 25px 25px, 75px 75px;
+    border-radius: 50%;
+    animation: float 20s infinite ease-in-out;
+}
+
+.mandala-1 {
+    top: 10%;
+    left: -10%;
+    animation-delay: 0s;
+}
+
+.mandala-2 {
+    top: 50%;
+    right: -10%;
+    animation-delay: 7s;
+}
+
+.mandala-3 {
+    bottom: 10%;
+    left: 20%;
+    animation-delay: 14s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(180deg); }
+}
+
+/* Header Styles */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 30px rgba(220, 20, 60, 0.1);
+    transition: all 0.3s ease;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
+.brand-text {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.brand-ornament {
+    font-size: 0.8rem;
+    color: var(--primary-gold);
+    margin-top: -5px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--rich-brown);
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-red);
+    transform: translateY(-2px);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border:
