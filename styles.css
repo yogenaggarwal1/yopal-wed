@@ -122,7 +122,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 0.3rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -205,13 +205,21 @@ body {
 
 /* Hero Section */
 .hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
     background: var(--gradient-primary);
-    overflow: hidden;
+	min-height: 100dvh;       /* fits exactly one screen on mobile */
+    display: flex;            /* center contents */
+    flex-direction: column;
+    justify-content: center;  /* vertical centering */
+    align-items: center;      /* horizontal centering */
+    box-sizing: border-box;   /* padding stays inside */
+    overflow: hidden;         /* prevent scrollbars if svg overflows */
+}
+
+.hero img, 
+.hero svg {
+  max-width: 100%;          /* prevent overflow */
+  height: auto;
 }
 
 .hero-overlay {
@@ -233,13 +241,14 @@ body {
     background-image: 
         repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 215, 0, 0.1) 20px, rgba(255, 215, 0, 0.1) 40px),
         repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(255, 69, 0, 0.1) 20px, rgba(255, 69, 0, 0.1) 40px);
-    animation: patternShift 30s linear infinite;
+    animation: patternShift 10s linear infinite;
     z-index: 1;
 }
 
 @keyframes patternShift {
-    0% { transform: translateX(0) translateY(0); }
-    100% { transform: translateX(40px) translateY(40px); }
+    0% { transform: translateX(0) translateY(0px); }
+	50% { transform: translateX(0px) translateY(40px); }
+    100% { transform: translateX(0px) translateY(0px); }
 }
 
 .hero-content {
