@@ -32,6 +32,46 @@
     --container-padding: 0 2rem;
 }
 
+/* Self-hosted fonts */
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('PlayfairDisplay-Regular.woff2') format('woff2'),
+         url('PlayfairDisplay-Regular.woff') format('woff');
+    font-weight: 400;       /* use numeric instead of "normal" */
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Playfair Display Bold */
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('PlayfairDisplay-Bold.woff2') format('woff2'),
+         url('PlayfairDisplay-Bold.woff') format('woff');
+    font-weight: 700;       /* use numeric instead of "bold" */
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Crimson Text Regular */
+@font-face {
+    font-family: 'Crimson Text';
+    src: url('CrimsonText-Regular.woff2') format('woff2'),
+         url('CrimsonText-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Crimson Text Italic */
+@font-face {
+    font-family: 'Crimson Text';
+    src: url('CrimsonText-Italic.woff2') format('woff2'),
+         url('CrimsonText-Italic.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
 body {
     font-family: var(--font-secondary);
     line-height: 1.6;
