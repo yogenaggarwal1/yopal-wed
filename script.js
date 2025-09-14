@@ -8,7 +8,46 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeMobileMenu();
     initializeParallaxEffects();
     initializeImageLazyLoading();
+    initializeDynamicHero(); // New function for hero fitting
 });
+
+// Simplified Hero Content Fitting - Always 100vh, just shrink content
+function initializeDynamicHero() {
+    function adjustHeroContent() {
+        const hero = document.querySelector('.hero');
+        const heroContainer = document.querySelector('.hero-container');
+        const navbar = document.querySelector('.header');
+        
+        if (!hero || !heroContainer || !navbar) return;
+
+        const viewportHeight = window.innerHeight;
+        const navbarHeight = navbar.offsetHeight;
+        
+        // Always use 100vh, just adjust content size
+        hero.style.height = '100vh';
+        heroContainer.style.height = `calc(100vh - ${navbarHeight + 20}px)`; // 20px extra safety margin
+        
+        // Set safe distances as CSS variables
+        document.documentElement.style.setProperty('--safe-top-distance', `${navbarHeight + 20}px`);
+        document.documentElement.style.setProperty('--available-hero-height', `${viewportHeight - navbarHeight - 20}px`);
+        
+        console.log(`Hero adjusted: Navbar ${navbarHeight}px, Available ${viewportHeight - navbarHeight - 20}px`);
+    }
+
+    // Initial adjustment
+    adjustHeroContent();
+    
+    // Adjust on resize and orientation change
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(adjustHeroContent, 100);
+    });
+    
+    window.addEventListener('orientationchange', () => {
+        setTimeout(adjustHeroContent, 200);
+    });
+}
 
 // Countdown Timer
 function initializeCountdown() {
