@@ -1080,12 +1080,33 @@ section {
         --container-padding: 0 1rem;
     }
 
-    .nav-links {
-        display: none;
-    }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 80px;
+    right: 0;
+    width: 250px;
+    height: calc(100vh - 80px);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 2rem 1rem;
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    z-index: 999;
+  }
+
+  .nav-links.mobile-open {
+    display: flex; /* 👈 important: show menu when open */
+  }
+
+  .nav-links li {
+    margin: 1rem 0;
+  }
 
     .mobile-menu-btn {
         display: flex;
+		z-index: 1001; /* ensure it’s above menu */
     }
 
     .hero-title {
